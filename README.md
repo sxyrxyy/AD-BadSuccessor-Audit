@@ -15,9 +15,9 @@
 
 ## 🗝️ Why you should care
 > Attackers with the above rights can craft a delegated Managed Service Account, set  
-> `msDS-ManagedAccountPrecededByLink`, flip `msDS-DelegatedMSAState = 2`, then log on as the target –  
+> `msDS-ManagedAccountPrecededByLink`, flip `msDS-DelegatedMSAState = 2`, then log on as the target -  
 > effectively **impersonating Domain Admins** without touching a DC.  
-> — “Abusing dMSA for Privilege Escalation”, Akamai (2025)
+> - “Abusing dMSA for Privilege Escalation”, Akamai (2025)
 
 ## 📋 Prerequisites
 | Requirement | Notes |
@@ -27,6 +27,6 @@
 
 ## 🚀 Quick start
 ```powershell
-git clone https://github.com/<YOUR-ORG>/AD-BadSuccessor-Audit.git
+git clone https://github.com/sxyrxyy/AD-BadSuccessor-Audit.git
 cd AD-BadSuccessor-Audit
 .\Find-BadSuccessor.ps1
