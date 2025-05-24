@@ -30,3 +30,22 @@
 git clone https://github.com/sxyrxyy/AD-BadSuccessor-Audit.git
 cd AD-BadSuccessor-Audit
 .\Find-BadSuccessor.ps1
+
+## 🛠️ Mitigation
+
+1. **Remove risky permissions**
+   Edit OU ACLs and strip **CreateChild**, **GenericAll**, **WriteDACL**, and **WriteOwner** from all low‑privilege principals. Leave these rights only with a tightly‑controlled admin group.
+2. **Lock down dMSA creation**
+   Create a dedicated security group (e.g. `dMSA-Admins`) and delegate dMSA creation **exclusively** to it. Deny `Create Child` for the dMSA object type to everyone else.
+3. **Move vulnerable objects**
+   When you cannot clean an ACL quickly, move the affected computers or service accounts into a new OU that inherits stricter ACLs.
+4. **Enable auditing & monitoring**
+   Turn on **Directory Service Changes** auditing and watch for:
+   * Creation of objects with class `msDS‑DelegatedManagedServiceAccount`
+   * Modifications of `msDS‑ManagedAccountPrecededByLink` or `msDS‑DelegatedMSAState` (Event ID 5136)
+5. **Apply vendor patches**
+   Follow Microsoft advisories and apply any fix or registry‑based mitigation to *all* Domain Controllers as soon as it is released.
+6. **Harden trusts**
+   If the domain participates in forest trusts, enable **Selective Authentication** to block external principals from abusing BadSuccessor across trust boundaries.
+7. **Document & review**
+   Record every change and schedule a quarterly review of OU ACLs to ensure that no new risky permissions have been introduced.
