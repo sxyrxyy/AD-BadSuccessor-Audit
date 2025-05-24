@@ -30,6 +30,7 @@
 git clone https://github.com/sxyrxyy/AD-BadSuccessor-Audit.git
 cd AD-BadSuccessor-Audit
 .\Find-BadSuccessor.ps1
+```
 
 ## 🛠️ Mitigation
 
